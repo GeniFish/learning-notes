@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">    
+    <title>calculator</title>
+</head>
+<body>        
+    <input id="first-number" type="number" value="0" placeholder="第一个数字">
+    <input id="second-number" type="number" value="0" placeholder="第二个数字">
+    <button id="add-btn">加</button>
+    <button id="minus-btn">减</button>
+    <button id="times-btn">乘</button>
+    <button id="divide-btn">除</button>
+    <p id="result">运算结果</p>
+    <script>
+        var num1 = document.querySelector("#first-number")
+        var num2 = document.querySelector("#second-number")
+        var btnAdd = document.querySelector("#add-btn")
+        var btnMinus = document.querySelector("#minus-btn")
+        var btnTimes = document.querySelector("#times-btn")
+        var btnDivide = document.querySelector("#divide-btn")
+        var result = document.querySelector("#result")
+        btnAdd.addEventListener("click", function() {
+            calculator("add", num1.value, num2.value)
+        }, false)
+        btnMinus.addEventListener("click", function () {
+            calculator("minus", num1.value, num2.value)
+        },false)
+        btnTimes.addEventListener("click", function () {
+            calculator("times", num1.value, num2.value)
+        },false)
+        btnDivide.addEventListener("click", function () {
+            calculator("divide", num1.value, num2.value)
+        },false)
+        function calculator(operator, firstNum, secondNum) {
+            var resultNum
+            firstNum = parseFloat(firstNum)
+            secondNum = parseFloat(secondNum)    
+            if (isNaN(firstNum) == true || isNaN(secondNum) == true) {
+                console.error("输入的数据不是有效数字");
+                return
+            }
+            switch (operator) {
+                case "add":
+                    resultNum = firstNum + secondNum
+                    break;
+                case "minus":
+                    resultNum = firstNum - secondNum
+                    break;
+                case "times":
+                    resultNum = firstNum * secondNum
+                    break;
+                case "divide":
+                    if (secondNum == 0) {
+                        console.error("除数不能为0");
+                        return
+                    }
+                    resultNum = firstNum / secondNum
+                    break;
+                default:
+                    break;
+            }
+            result.innerHTML = "运算结果 " + resultNum
+        }
+       
+    </script>
+</body>
+</html>
